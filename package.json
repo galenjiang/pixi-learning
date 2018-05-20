@@ -1,0 +1,25 @@
+{
+  "name": "pixi-learning",
+  "version": "1.0.0",
+  "description": "practice for pixi learning",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galenjiang/pixi-learning.git"
+  },
+  "keywords": [
+    "pixi"
+  ],
+  "author": "galen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/galenjiang/pixi-learning/issues"
+  },
+  "homepage": "https://github.com/galenjiang/pixi-learning#readme",
+  "dependencies": {
+    "pixi.js": "^4.7.3"
+  }
+}
