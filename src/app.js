@@ -49,8 +49,8 @@ export default () => {
                 
         explorer = new Sprite(id['explorer.png'])
         explorer.position.set(68, app.stage.height / 2 - explorer.height / 2)
-        explorer.vx = 1
-        explorer.vy = 1
+        explorer.vx = 0
+        explorer.vy = 0
 
 
         app.stage.addChild(explorer)
@@ -83,38 +83,53 @@ export default () => {
             app.stage.addChild(blob)
         }
 
+
+        const down = new KeyBoardEvent(40)
+        down.on('down', () => {
+            explorer.vy = 1
+        })
+        down.on('up', () => {
+            // explorer.vy = 0
+            if (!up.isDown && explorer.vx === 0) {
+                explorer.vy = 0;
+              }
+        })
+
+        const up = new KeyBoardEvent(38)
+        up.on('down', () => {
+            explorer.vy = -1
+        })
+        up.on('up', () => {
+            explorer.vy = 0
+        })
+
+        const left = new KeyBoardEvent(37)
+        left.on('down', () => {
+            explorer.vx = -1
+        })
+        left.on('up', () => {
+            explorer.vx = 0
+        })
+
+        const right = new KeyBoardEvent(39)
+        right.on('down', () => {
+            explorer.vx = 1
+        })
+        right.on('up', () => {
+            explorer.vx = 0
+        })
+
+
+        
         app.ticker.add(delta => gameLoop(delta))
         
         function gameLoop(delta) {
-            // blob
+            updateExplorer(delta)
         }
 
-        const downEvent = new KeyBoardEvent(40)
-        downEvent.on('down', () => {
-            explorer.position.y += 1
-        })
-        downEvent.on('up', () => {
-        })
-
-        const upEvent = new KeyBoardEvent(38)
-        upEvent.on('down', () => {
-            explorer.position.y -= 1
-        })
-        upEvent.on('up', () => {
-        })
-
-        const leftEvent = new KeyBoardEvent(37)
-        leftEvent.on('down', () => {
-            explorer.position.x -= 1
-        })
-        leftEvent.on('up', () => {
-        })
-
-        const rightEvent = new KeyBoardEvent(39)
-        rightEvent.on('down', () => {
-            explorer.position.x += 1
-        })
-        rightEvent.on('up', () => {
-        })
+        function updateExplorer(delta) {
+            explorer.x += explorer.vx
+            explorer.y += explorer.vy
+        }
     }
 }
